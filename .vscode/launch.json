@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name":"Debug ARM",
+            "type": "cppdbg",        //Usually that's still GDB, however that option is far easier to work witj
+            "request": "launch",     //Self-explainatory
+            "program": "/home/shosh/BSUIR projects/CProg/Test/test", //Path to the binary executable. Probably can be done using vscode constants, though they totally suck
+            "cwd": "/home/shosh/BSUIR projects/CProg/Test",          //Path to the directory of an exectuable. Probably could be done the same way,
+            "miDebuggerPath": "/usr/bin/gdb",                        //Path to the gdb debugger
+            "miDebuggerServerAddress": "localhost:8080",             //Adress which is used to connect by gdv
+            //"stopAtEntry": true, //Perhaps, should be disabled. Command to make a breakpoint at the very entry of a program
+            "preLaunchTask": "Run QEMU"        //Predefined task in tasks.json
+        }
+    ]
+}

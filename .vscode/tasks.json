@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",  //Using shell "make" command build a program
+            "command": "make",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true,
+            },
+            "problemMatcher": [      //A problem matcher. Basically, static analysis using problem matcher as source of it (serves no use here,lmao,but hey, cool to know;)
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Run QEMU",
+            "type": "shell",       //Invoking launching qemu after building the source file
+            "command": "echo 'QEMU started'; qemu-aarch64 -L /usr/aarch64-linux-gnu -g 8080 ./test",
+            "dependsOn": [
+                "Build"
+            ],
+            "isBackground": true,  //Self-explainatory
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "QEMU started",   
+                    //Basically, terminates background proccess, so that the launch task could proceed when caught a regexp "QEMU STARTED"
+                    //That's not just a log, that's really necessary for vscode to work with backgrounf processes, lmao
+                }
+            }
+        }
+    ]
+}
